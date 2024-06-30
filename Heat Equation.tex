@@ -1,0 +1,1025 @@
+\section{Introduction}
+
+We study the main theory about classical and weak solutions of heat equation from  \cite{evans} and  \cite{lecture2} followed by some results and description  \cite{ahmed} and \cite{math9} presented in easier way. We have used \cite{stack} and \cite{green} to do some calculations in Maximum principle part. We have used \cite{gron} to understand more about Glarekin method and \cite{gron} as a certain tool  while proving uniqueness. We have used \cite{sobolev} to get insight on Sobolev embeddings. Other, \cite{priori} , \cite{lmu} , \cite{increased} and \cite{youtube} has been used to understand more on the same topics priori estimates, existence, uniqueness and regularity of solutions of second order parabolic PDEs. \\
+Heat equations are being studied from time of Fourier and even before. While studying, both theoretical and applied motivations were realized. In applied part, we realized, to study Black Scholes equation (in sense of evolution) ,heat equation is useful and  methods like Galerkin approximation's connection with  Finite elements method in a way. In theoretical part, we realized regularities of solutions of heat equations can be studied or have connection to group theory and calculus of variation. But, we don't go in details about them here.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Heat Equation}
+The heat equation \\
+\begin{equation}
+    \partial_{t} = \Delta u + f
+\end{equation}\\
+is a parabolic partial differential equation. It is given with suitable initial condition and boundary conditions to make well equipped problem with a unique solution. For example, Let's take Drichlet's boundary conditions on a bounded open set $\Omega \in \mathbb{R}^{n}$ for $u: \Omega \times [0, \infty) \rightarrow \mathbb{R}$ \quad (initial boundary value problem)
+\begin{equation}
+    \partial_{t}u = \Delta u + f(x,t) \qquad \text{for } \qquad x \in \Omega \quad and \quad t>0 \end{equation}
+\[u(x,t)=0    \quad \text{for} \quad  x \in \partial \Omega \quad and \quad t>0\]
+\[u(x,0)=g(x)  \qquad \text{for} \quad x \in \Omega \quad \text{Initial \quad Condition}\]\\
+
+Physically, the evolution in time of temperature $u(x,t)$ of a body in $\Omega$ \\
+boundary temperature = 0 (fixed) \\
+initial temperature = g \qquad $g:\Omega \rightarrow \mathbb{R}$\\
+heat source=f/volume \qquad $f:\Omega \times (0,\Omega ) \rightarrow \mathbb{R}$ \\
+
+\section{Maximum principle}
+We can estimate solutions of heat equations above(2)  in $(L^{\infty})$ using \textbf{ Maximum principle.}\\
+If $f \leq 0, \quad T>0 $;\\
+\[\Gamma = \Omega \times \{t=0\} \cup \partial \Omega \times [0,T)
+\]
+\[
+\textbf{Max}_{\Omega\times[0,T]} \textbf{u} = \textbf{Max}_{\Gamma} \textbf{u}
+\]
+Proof & (Using divergence theorem):\\
+Let $(u-m)_{+}$: = max\{0, u-m\}\\
+Multiply heat equation above(1) with test function $(u-m)_{+}$ and integrate on both sides under domain $\Omega $\\
+\[
+\int_{\Omega} \partial_{t} u (u-m)_{+} \,dx = \int_{\Omega} \Delta u (u-m)_{+}\,dx + \int_{\Omega} f(u)(u-m)_{+}\,dx
+\]
+Given in the condition; $f \leq 0$\\
+So, \[\int_{\Omega}f(u)(u-m)_{+} \leq 0\]
+Let, assume the contradiction,\\
+Let, 'I' be the set where $(u-m)>0$\\
+\[ \Rightarrow
+\int_{I} \partial_{t}(u-m)(u-m)\,dx \leq \int_{I}\Delta (u-m)(u-m)\,dx
+\]
+\begin{itemize}
+    \item \[
+    LHS\footnote{
+   
+    We know this differentiation and integration interchange,\\
+    \[
+    \int_{a}^{b}\frac{d}{dt}\Big[\frac{du}{dx}\Big]\,dx = \frac{d}{dt}\int_{a}^{b}\Big[ \frac{du}{dx}  \Big]\,dx
+    \]
+    }=\int_{I}\partial_{t}(u-m)(u-m)\,dx = \int_{I}\frac{d}{dt}(u-m)(u-m)\,dx=\frac{1}{2}\frac{d}{dt}\int_{I}(u-m)^{2}\,dx\]
+    \item RHS\quad(Using divergence theorem and integration by parts)\footnote{The calculation of use of divergence theorem and integration by parts to get RHS is given in the appendix secction as use of divergence theorem or we can directly use Green's first identity from equation(21.7) of \cite{green} } \[=  \int_{I} \Delta (u-m)(u-m)\,dx = \int_{\partial I}n. \nabla (u-m)(u-m)\,ds - \int_{I}|\nabla (u-m)|^{2}\,dx
+    \] or ( see equation(21.7) of  \cite{green} )
+   
+\end{itemize}\\
+
+\[ \Rightarrow
+\frac{1}{2}\frac{d}{dt}\int_{I}(u-m)^{2}\,dx \leq \int_{\partial I} n. \nabla (u-m)(u-m)\,ds- \int_{I}|\nabla|^{2}\,dx
+
+ \]\\
+ 
+We look at the each terms of RHS:\\
+ \begin{itemize}
+     \item \[\int_{\partial I} n. \nabla(u-m)(u-m)\,dx = 0 \quad \text{because \quad at}, \partial \Omega \quad u  =0\]\\ or  (u-m) isnot isn't integrable by the boundary $\partial \Omega$\\
+     \item \[-\int_{I}|\nabla(u-m)|^{2}\,dx \leq 0 \quad \text{because} \quad |\nabla(u-m)|^{2}=+ve \]
+ \end{itemize}
+ \[
+ \Rightarrow \frac{1}{2}\frac{d}{dt} \int_{I}(u-m)^{2}\,dx \leq - \int_{I}|\nabla(u-m)|^{2}\,dx \leq 0
+ \]
+ \[
+ \Rightarrow \frac{d}{dt}\int_{I}(u-m)_{+}^{2}\leq 0
+ \]
+ \[
+ \text{at} t=0, \quad u\leq m, \quad so, (u-m)_{+}=0  \quad QED
+ \]
+ which is contradiction to above assumption $(u-m)>0$\\
+ Argument, note 'u' is smooth function that attains maximum at $x \in \Omega$ and $0<t\leq T$. Then,we have two options:\\ \rightarrow  \[\partial_{t}u=0 \quad \text{if} \quad 0<t<T\]\\
+ or \rightarrow \[\partial_{t}u\leq 0\quad \text{if}\quad  t=T \quad \text{and} \quad \Delta u \leq 0\]\\
+ \[\partial_{t}-\Delta u \geq 0\] \quad \text{which \quad is \quad impossible \quad if} \[f<0\].\\
+ So,'u' \quad is \quad maximum \quad on \quad  $\partial \Omega \times [0,T]$ where $u=0$ or at $t=0$.\\
+
+\textbf{Uniqueness}\quad (This proof is given in the book by Evans)\\
+$\exists$ at most one solution $u \in C(\bar\Omega)\cap C^{2}(\Omega)$ to the problem,\\
+\[\partial_{t}u-\Delta u=f \qquad \text{in} \quad \Omega \]
+\[u=g \quad \text{on} \quad  \Gamma \]
+ Proof: Let, $u=$ difference between two solutions to this problem. Then, 'u' solves same problem. \\But, if
+ $f=0$ and $ g=0$, 'u' achieves min and max at $\Gamma$. But, there $u=0$ $\Rightarrow \quad u=0$ everywhere. \quad QED\\
+ 
+ 
+ \textbf{Question?}:Does $ L^{\infty}(0,T;L^{2}) \bigcap L^{2}(0,T);L^{2} $ suffice Maximum principle argument?
+Yes, Because of the following theorem.
+ \textbf{Smoothness}\quad(The proof of this theorem is given in page 59 of \cite{evans})\\
+ Lets, take $U_{T}.$ Suppose $u\in C_{1}^{2}(U_{T})$ solves the heat equation in $U_{T}$.Then, $u\in C^{\infty}(U_{T})$.
+ To understand more, See Theorem(3.4) of \cite{ahmed} or page 39 section(2.6) of \cite{lmu}
+ 
+ 
+ \section{Solving the heat equation using fourier transform}\footnote{ Fourier transform of f=f(x);\[
+F\{f(x)\}=\tilde{f}(w):= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-iwx}\,dx
+\] We can find the inverse.
+
+
+
+
+
+}
+
+We suppose the following initial condition,
+\begin{equation}
+    u_{t} - \Delta u = 0, \qquad -\infty < x < - \infty, \qquad t>0; \end{equation}
+   \[ u(x,0) = g(x), \qquad  - \infty < x < \infty \]
+    \[u(x,t) \rightarrow 0 , u_{x}(x,t) \rightarrow 0; \quad \text{as} \quad |x| \rightarrow \infty
+\]
+Let $\tilde{u}(x,t)=\mathbb{F}\{u(x,t)\}  $
+We transform both sides of (3) to obtain;
+$\frac{\partial \tilde{u}}{\partial t}= - w^{2} \tilde{u}$ (Transform of derivatives)\\
+It is a first order ODE(ordinary differential equation). It has a general solution
+\begin{equation}
+\Tilde{u}(w,t)=A(w)e^{-w^{2}t}
+\end{equation}
+We transform initial conditon to obtain $\tilde{u}(w,0)=\tilde{g}(w)$.We combine with (3) to form $A=\tilde{g}$. Therefore,$ \tilde{u}(x,t)=\tilde{g}(w)e^{-w^{2}t}$\\
+We compute the following to recover $u(x,t)$;\\
+$\mathbb{F}_{-1}\{\tilde{g(w)e^{-w^{2}t}}\}= \mathbb{F}^{-1}\{\tilde{g}(w)\tilde{f}(w,t)\}$\\
+We apply the convolution theorem \footnote{
+The convolution of two functions f and g is given by;\[
+(f*g)=\int_{-\infty}^{\infty}f(p)g(x-p),dp = \int_{-\infty}^{\infty}f(x-p)g(p),\dp
+
+
+
+
+
+\]                                                       }
+\\
+\[\tilde{F}^{-1}\{\tilde{g}(w)\}=g(x)\\f(x,t) = \tilde{F}^{-1}\{e^{-w^{2}t}\}=\frac{e^{\frac{-x^{2}}{4t}}}{\sqrt{2t}}\]\\
+This follows from Fourier transform of Gaussian function.
+
+
+Thus,by convolution theorem,
+\[
+u(x,t)= \frac{1}{\sqrt{2\pi}}(f*g)(x,t)
+=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x-p,t)g(p)\,dp
+\]
+\[
+=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}g(p)\frac{exp\frac{-(x-p)^{2}}{4t}  }{\sqrt{2t}}\,dp
+\]
+\[
+=\frac{1}{\sqrt{4\pi t}}\int_{-\infty}^{\infty}g(p){exp\frac{-(x-p)^{2}}{4t}}\,dp
+
+\]
+So, this is the nature of general solution of the heat equation.
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+\section{Energy estimates}
+We can integrate the heat equation in  ($L^{2}$) by integration of the equation. We multiply the heat equation (1) by u, integrate over $\Omega$ , apply the divergence theorem, use the boundary condition that u = 0 on $ \partial \Omega $:
+\[
+\frac{1}{2} \frac{d}{dt}\int_{\Omega} {u^2}\,dx + \int_{\Omega} |Du|^{2}\,dx = \int_{\Omega} fu \,dx
+
+\]
+Integrate the equation wrt time and use initial condition:
+\begin{equation}
+\frac{1}{2}\int_{\Omega}u^{2}(x,t)\,dx + \int_{0}^{t}\int_{\Omega}|Du|^{2}\,dx\,ds =
+\int_{0}^{t} \int_{\Omega} fu\,dx\,ds + \frac{1}{2}\int_{\Omega}g^{2}\,dx
+\end{equation}
+
+For $0\leq t \leq T$, use Cauchy inequality with $\epsilon$:\\
+
+\begin{center}
+\begin{displaystyle}
+\[
+\int_{0}^{t} \int{\Omega} fu\,dx\.ds & \leq  \left\Big( \int_{0}^{t} \int_{\Omega} f^{2}\,dx\,ds \right \Big)^{\frac{1}{2}}\\
+ \displaystyle \leq \frac{1}{4 \epsilon} \int_{0}^{T} \int_{\Omega}f^{2}\,dx\,ds + \eplison \int_{0}^{T} \int_{\Omega} u^{2} \,dx\,ds \\
+\displaystyle \leq \frac{1}{4 \eplison} \int_{0}^{T} \int_{\Omega} f^{2} \dx,\,ds + \epsilon T \max_{0 \leq t \leq T} \int_{\Omega} u^{2} \,dx
+\]
+\end{displaystyle}
+\end{center}
+
+Taking supremum of (3) over $ t \in [0,T]$  and using this inequality with   $\epsilon T = \frac{1}{4}$ :
+\[ \frac{1}{4} \max_{[0,T]} \int_{\Omega} u^{2} (x,t)\,dx +\int_{0}^{T} \int_{\Omega} |Du|^{2} \,dx\,dt \leq T \int_{0}^{T}\int_{\Omega} f^{2}\,dx\,dt + \frac{1}{2} \int_{\Omega} g^{2}\,dx \]
+This gives a priori energy estimate:
+\begin{equation}
+\|u\|_{L^{\infty}(0,T;L^{2})} + \|u\|_{L^{2}(0,T;H_{0}^{1}) }  \leq  C \Big( \|f\|_{L^{2(0,T;L^{2})}} + \|g\|_{L^{2}} \Big)
+\end{equation}
+where $ C= C(T)$ is constant. We use this energy estimate to construct weak solutions.\footnote{ We can estimate $u$ and $Du$ if $f=0$ and initial data $g$, so we can say there is parabolic smoothing in the heat equation.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Generalization of second-order parabolic PDEs}
+Theorems, definations and generalization of heat equation are based on \cite{evans} and \cite{lecture2} mostly.But, the sign convention used mostly in every literature or books has been used.
+
+
+We replace Laplacian $- \Delta $ by uniformly elliptic operator L on $\Omega \times (0,T). $  L in divergence form is given as follows:
+\begin{equation}
+L =  - \sum_{i,j=1}^{n} \partial_{i}(a^{ij} \partial_{j} u)+ \sum_{j=1}^{n}b^{j} \partial_{j} u + cu  
+\end{equation}
+where $a^{ij}(x,t), b^{i}(x,t),c(x,t)$ are coefficient functions\\
+$a_{ij}=a^{ji}$\\
+Assume $\exists \, \theta > 0 $ s.t. \textbf{Uniform Ellipticity)
+\begin{equation}
+\sum_{ij=1}^{n} a^{ij}(x,t) \xi_{i} \xi_{j} \geq \theta |\xi|^{2} \\
+\end{equation}
+
+$\forall (x,t) \in \Omega \times (0,T)$ and $\xi \in {R}^{n}$
+
+Corresponding parabolic PDE:
+\begin{equation}
+    u_{t} + \sum{j=1}^{n} b^{j} \partial_{j} u  + cu = \sum_{i,j=1}^{n} \partial_{i}(a^{ij} \partial_{j} u + f
+\end{equation}
+
+
+
+ Drichlet boundary cnditions:
+\begin{equation}
+   
+        u_{t}+Lu = f
+\end{equation}\\
+       \[u(x,t) = 0 & \quad \text{for}\quad x \in \partial \Omega \quad \text{and} \quad t > 0,\]\\
+       \[ u(x,0)=g(x)  & \quad \text{for} \quad  x \in \overline{\Omega}\]\\
+       
+       
+   
+
+
+As same estimate as heat equation holds, so we use $L^{2}$-energy estimate to prove esixtence of weak solutions of above .
+
+
+
+\section{Weak formulation}
+Theorems, definations and construction of weak formulation are based on \cite{evans} and \cite{lecture2} mostly.But, the sign convention used mostly in every literature or books has been used.
+Let,  $\Omega$ , the coefficient of L and   u  be smooth. We multiply (9) by the a test function  $v \in C_{C}^{\infty}(\Omega}$, integrate the results over $\Omega$ and apply divergence theorem:
+\begin{equation}
+    (u_{t}, v)_{L^{2}}+a(u(t),v;t)=(f(t),v)_{L^{2}}  &  \text{for} 0 \leq t \leq T
+\end{equation}
+
+$(.,.)_{L^{2}}$ denotes the $L^{2}$-inner product\\
+
+$(u,v)_{L^{2}} = \int_{\Omega} u(x)v(x)\,dx $,\\
+
+$a$ is the \textbf{bilinear form} associated with L\\
+
+\begin{equation}
+    a(u,v;t)= \sum_{i,j=1}^{n} \int_{\Omega} a^{ij}(x,t) \partial_{i} u(x) \partial_{j} u(x) \,dx \\ +\sum_{j=1}^{n} \int_{\Omega} b^{j}(x,t) \partial_{j} u(x) v(x) \,dx +
+    \int_{\Omega} c(x,t) u(x) v(t) \,dx
+\end{equation}
+
+In (11) change of vector valued viewpoint and write u(x) =u(.,t).
+
+\textbf{Assumption(1)}: The set $\Omega \subset R^{n}$ is bounded and open, $T>0$, and:
+\begin{enumerate}
+    \item the coefficients of a in (12) satisfy $ a^{ij}, b^{j}, c \in L^{\infty}(\Omega \times (0,T));$ \\
+    \item $a^{ij}=a^{ji} $ for $1 \leq i,j \lew n$ and the uniform ellipticity condition (8) holds for some constant $\theta > 0$
+    \item $f \in L^{2}(0,T;H^{-1}(\Omega)$ and $g \in L^{2}(\Omega)$
+\end{enumerate}
+
+we let f to take values in $H^{-1}(\Omega)=H_{0}^{1}(\Omega)^{,}$ and duality pairing,\\$H^{-1}(\Omega) \text{and} H_{0}^{1}(\Omega)^{,}$ by\\
+
+\[ \langle .,. \rangle : H^{-1}(\Omega) \times H_{0}^{1}(\Omega) \rightarrow \mathbb{R}               \]
+
+coefficients of a are uniformly bounded in time so it follows from theorem (2) page 14 of this thesis that:
+\[a:H_{0}^{1}(\Omega) \times H_{0}^{1}(\Omega) \times (0,T) \rightarrow \mathbb{R}
+\]
+$\exists$   $C>0$ and $\\gamma \in \mathbb{R}$ s.t. for every $u,v \in H_{0}^{1}(\Omega)$ \textbf{Coercivity}, see page 14 theorem(2) of this thesis
+\begin{equation}
+    C\|U\|_{H_{0}^{1}} \leq a(u,u;t) + \gamma \|u\|_{L^{2}}^{2}
+\end{equation}
+\begin{equation}
+    |a(u,v;t)| \leq C \|U\|_{H_{0}^{1}} \|v\|_{H{0}^{1}}
+\end{equation}
+     
+
+\textbf{Weak Solution Defination(1)}: A function  $u:[0,t] \rightarrow H_{0}^{1}(\Omega)$ is a weak solution of (10) if:
+\begin{enumerate}
+    \item \[u \in L^{2}(0,T;H_{0}^{1}(\Omega) \text{and} u_{t} \in L^{2}(0,T;H^{-1}(\Omega));\]\\
+    \item
+    \begin{equation}
+       For \quad every $v \in H_{0}^{1},$\\$ \langle u_{t},v \rangle + a(u(t),v;t)=\langle f(t),v \rangle $
+    \end{equation}
+    for t pointwise a.e. in [0,T] where a is defined in (12).
+    \item u(0) = g
+\end{enumerate}
+
+PDE in (15) is in weak sense and the BC  $u=0$ on $\partial \Omega$ by $u(t) \in H_{0}^{1}(\Omega)$.
+\begin{itemize}
+    \item Time derivative in (15) is  a distributional time derivative $(u_{t}=w$ if\\
+    \begin{equation}
+        \int_{0}^{T} \phi(t) u(t) \,dt = - \int_{0}^{T} \phi_{,}(t)w(t)\,dt
+    \end{equation}
+    for every $\phi : (0,T) \leftarrow \mathbb{R} $ with $\phi \in C_{C}^{\infty}(0,T)$\\ It is \textbf{generalization of the weak derivative} of $\mathbb{R}$-valued function. The integral in (16) are vector valued Lebesgue integrals defined analogous way to Lebesgue integral of an integrable $\mathbb{R}$-valued function.
+   
+    \item it isn't trivial that $u(0)=g$ (initial condition) make sense in defnation[1] . Any explicit continuity on u isn't required and  $u \in L^{2}(0,T;H^{-1}(\Omega))$ is defined only upto pointwise value everywhere equivalence in t $\in [0,T].$ So, we say $u \in L^{2}(0,T; H_{0}^{1}(\Omega))$ and $u_{t} \in L^{2}(0,T;H^{-1}(\Omega))$ implies that \\
+    $u \in C([0,T];L^{2}(\Omega))$. So, u with its continuous \footnote{page 202, proposition (6.34) of \cite{lecture2} }
+   
+   
+    representative, initial condition makes sense.
+   
+\end{itemize}
+   
+
+\textbf{Existence Theorem}: Let the conditions in assumption (1) are satisfied. Then for every $f \in L^{2}(0,T;H^{-1}(\Omega))$ and $g \in H_{0}^{1}(\Omega)$, $\exists$ a unique solution\\
+\[ u \in C([0,T];L^{2}(\Omega)) \cap L^{2}(0,T;H_{0}^{1}(\Omega))
+\]
+of (10) in the sense of the defination (2) with $u_{t} \in L^{2}(0,T;H^{-1}(\Omega))$
+Constant C depending only on $\Omega$, T and the coefficients of L, s.t. \\
+\[
+\|u\|_{L^{\infty}(0,T;L^{2})}+\|u\|_{L^{2}(0,T;H_{0}^{1})}+\|u_{t}\|_{L^{2}(0,T;H^{-1})} \leq C(\|f\|_{L^{2}}(0,T;H^{-1})+\|g\|_{L^{2}})
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{The Galerkin Method}
+We note most of the ideas about Glarekin contruction, Existence and Uniqueness of weak solution are from \cite{lecture2} and \cite{evans}.
+\textbf{Approximation construction}
+Galerkin approximation allows us to approximately solve a large or infinite dimensional problem by searching an approximate solution in a smaller finite dimensional space of our choosing. They are closely related to Variational formulation of PDE(eg, time dependent elliptic)
+Idea:For existence\\
+\begin{itemize}
+    \item We approximate $u: (0,T] \rightarrow H_{0}^{1}(\Omega)$ by functions $u_{N}: [0,T] \leftarrow E_{N}$. (It takes values in finite-dmensional subspace $E_{N} \subspace H_{0}^{1}(\Omega)$ of dimension N.)
+    \item We project PDE onto $E_{N}$. (We need $u_{N}$ that satisfies the PDE upto a residual which is orthogonal to $E_{N}$)
+    \item We then get a system of ODE for $u_{N}$ which has a solution
+    \item All $u_{N}$ satisfies energy estimate of the same form as the priori estimates.
+    \item These estimates are uniform in N
+    \item So,pass to $Limit \rightarrow \infty $ and obtain solution of the PDE.
+\end{itemize}\\
+
+Construction(for our analysis):(Choice of $E_{N}$ is suitable for existence proof)\\
+\begin{itemize}
+    \item Let,
+\begin{equation}
+    E_{N} = \langle w_{1},w_{2}, \dots ,w_{n} \rangle
+\end{equation}
+be linear space spanned by first N vectors.\\
+\item
+Orthonormal basis of $E_{N} = {w_{k}:k \in \mathbb{N}} \text{of} L^{2}(\Omega)$ \\
+Assume Orthonormal basis of $H_{0}^{1} = {w_{k}:k \in \mathbb{N}} \text{of} L^{2}(\Omega)$ \\
+Let $w_{k}(x)$ be eigenfunction of Drichlet laplacian $\Omega$;\\
+\begin{equation}
+   
+    -\Delta w_{k} = \lambda_{k} w_{k}  \quad w_{k} \in H_{0}^{1}(\Omega) \quad k \in \mathbb{N}
+   
+   
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\item Explicitly, \footnote[1]{Existence theory for solutions of elliptic PDEs,(the Dirchlet Laplacian on a bounded open set is a self-adjoint operator with compact resolvent, so normalized set of eigenfunctions have the required properties)}\\
+
+
+
+\[
+  \int_{\Omega}w_{j}w_{k} dx =
+  \left\{\begin{array}{lr}
+ 
+        1, \quad \text{if } &$j=k$\\
+           0, \quad \text{if} &  $j \neq k$
+           \end{array}\right\}
+ 
+\]\\
+\[
+\int_{\Omega}Dw_{j}.Dw_{k}\,dx=
+\left\{\begin{array}{lr}
+\lambda_{j} & \text{if} &j=k
+0 & \text{if} &j \leq k
+\end{array}\right\}
+
+\]
+\item We expand, $u \in H_{0}^{1}(\Omega) $ and the series is convergent in $H_{0}^{1}(\Omega)$ iff \footnote{Similar to expansion
+$u \in L^{2}(\Omega)$ is $L^{2}$-convergent series as $ u(x) = \sum_{k \in \mathbb{N}}c^{k}w_{k}(x) $ &where $c^{k} = (u,w^{k})_{L_{2}}$ and $u \in L^{2}(\Omega)$ iff, & $\sum_{k \in \mathbb{N}}|c^{k}|^{2} < \infty$
+
+
+}
+
+
+\[
+\sum_{k \in \mathbb{N}} \lambda_{k} |c^{k}|^{2} < \infty  
+\]
+\item  $P_{N}: L^{2}(\Omega) \rightarrow E_{N} \subset L^{2}(\Omega)  $ & the orthogonal projection onto $E_{N}$\\
+\begin{equation}
+    P_{N}\Big( \sum_{k \in \mathbb{N}} c^{k}w_{k}\Big)=\sum_{k=1}^{N}c^{k}w_{k}
+   
+\end{equation}
+\item Similarly,\\
+$P_{N}:H_{0}^{1} \rightarrow E_{N} \subset H_{0}^{1}$ (restricting) \\
+$P_{N}:H{-1} \rightarrow E_{N} \subset H^{-1}$ (extending) \\
+
+So, $P_{N}$ is defined on $H_{0}^{1}(\Omega)$ by (6.17) and on $H^{-1}$ by\\
+$
+\langle P_{N}u,v\rangle = \langle u,P_{N}v\rangle & \text{for all} v \in H_{0}^{1(\Omega)}
+ $
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Existence of weak solutions}
+We first prove the existence of the weak solutions, then uniqueness and briefly talk about their regularity. For existence proof; we do follow these three steps: (1) Construct approximate solutions (2) Derive energy estimate for approximate solution (3) Converge approximate solutions to a solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{itemize}
+\item Let,\\
+$E_N$ = N-dimensional subspace of $H_0^1(\Omega)$ (17)(18) and,\\
+$P_N$ = orthogonal projection onto $E_N$.
+ 
+Definition (Approximate solution)(as 6): A function $u_N:[0, T] \xrightarrow{} E_N $ is an approximate solution of (10) if:
+\begin{enumerate}
+    \item $u_N \in L^2(0,T:E_N)$ and $u_{Nt} \in L^2(0,T:E_N)$
+    \item for every $v \in E_N$,
+    \begin{equation}
+        (u_{Nt}(t),v)_{L^2} + a(u_N(t),v;t) = <f(t),v>
+    \end{equation}
+    pointwise a.e. in $t \in (0, T )$;
+    \item $u_N(0) = P_{Ng}$.
+\end{enumerate}
+\item Since $u_N \in H^1(0,T;E_N)$, so  $u_N \in C(0,T;E_N)$;(Sobolev embedding theorem \footnote{We have defined Sobolev embedding theorem on chapter 10 of this thesis using \cite{sobolev}}
+
+
+
+
+
+
+
+for function of single variable t.) , so the initial condition (3) is realized.
+\item For condition (2) $u_N$ should satisfy the weak formulation (15)
+of the PDE (test functions v are restricted to $E_N$), i.e.
+\begin{equation*}
+    u_{Nt} + P_NLu_N = P_Nf
+\end{equation*}
+for $t \in (0,T)$  pointwise a.e., \Rightarrow  $u_N$ takes values in $E_N$ and satisfies the projection of the PDE onto $E_N$.
+\item Now, we rewrite their definition
+explicitly ( IVP for an ODE). We expand,
+\item \begin{equation}
+u_{N}(t)=\sum_{k=1}_{N} c_{N}_{k}(t)(w)_{k}
+\end{equation}
+
+where $c_{N}^{k}:[0,T]\rightarrow \mathbb{R}$ \quad (continuous)
+\item  It suffice  to impose (20) for $v = w_1, ......, w_N$ due to linearity. Thus, (21) is an approximate solution iff;
+\begin{equation*}
+    c_N^k \in L^2(0,T), c_{Nt}^k \in L^2(0,T) \text{ for } 1 \leq k \leq N,
+\end{equation*}
+and $c_N^1,.....,c_N^N$ satisfies the system of ODEs
+\begin{equation}
+    c_{Nt}^j + \sum_{k=1}^N a^{jk}c_N^k = f^j, c_N^j(0) = g^j \text{  for  } 1 \leq j \leq N
+\end{equation}
+where,
+\begin{equation*}
+    a^{jk}(t) = a(w_j,w_k;t), f^j(t) = <f(t), w_j>, g^j = (g,w_j)_{L^2}
+\end{equation*}
+\item Equation (22)  in vector form for $\Vec{c}:[0,T] \leftarrow[]{} R^N $ is
+\begin{equation}
+    \Vec{c}_{Nt} + A(t)\Vec{c}_N = \Vec{f}(t), \Vec{c}_N(0) = \Vec{g}
+\end{equation}
+where
+\begin{equation*}
+    \Vec{c}_N = \{c_N^1,....c_N^N\}^T, \Vec{f}_N = \{f_N^1,....f_N^N\}^T, \Vec{g}_N = \{g_N^1,....g_N^N\}^T
+\end{equation*}
+\item and $A:[0,T] \xrightarrow[]{} R^{N \times N}$ is a matrix-valued function of $t$ with coefficients $(a^{jk})_{j,k = 1,N}$
+\item \textbf{Proposition(1)} . For every $N \in N$, $\exists$ a unique approximate solution
+$u_N: [0, T ] \xrightarrow[]{} E_N$ of (10).
+\begin{equation*}
+   c_{Nt}^j + \sum_{k=1}^N a^{jk}c_N^k = f^j, c_N^j(0) = g^j \text{  for  } 1 \leq j \leq N
+\end{equation*}
+
+\end{itemize}
+Proof: Proof for this proposition can be found on proposition(6.5) page 184 of (ch6.pdf) of \cite{lecture2} or chapter 3 of \cite{ahmed}.It has been said it follows from standard ODE theory. (also, contraction mapping theorem)
+
+
+
+
+
+
+
+
+\math\section*{ Step 2:Energy estimates for approximate solutions}.\\
+Similar to priori estimate for the heat equation, we get energy estimate for aprroximate solutions. We take the test function $v = u_N$ in the Galerkin equations.
+
+\textbf{Proposition (2)}: There exists a constant $C$, depending only on $T , Ω,$ and the
+coefficient functions $a^{ij}, b^j, c, $ such that for every $N \in N$ the approximate solution
+$u_N$ constructed in Proposition(1) satisfies:
+\begin{equation*}
+    ||u_N||_{L^\infty(0,T;L^2)} +  ||u_N||_{L^2(0,T;H^1_0)} + ||u_{Nt}||_{L^2(0,T;H^{-1})} \leq C \left( ||f||_{L^2(0,T;H^1_0)} + ||g||_{L^2} \right)
+\end{equation*}
+
+Proof: Proof for this proposition can be found on proposition(6.6) page 185 of (ch6.pdf) of \cite{lecture2} or chapter 3 of \cite{ahmed}. Different inequalities like Cauchy inequality, Cauchy-Schwartz inequality and projection inequality has been used.
+
+
+
+
+
+
+
+
+
+
+\math\section*{ Step 3:Convergence of approximate solutions.}\\
+We use compactness argument to show that a subsequence of approximate solutions converges to a weak solution.
+\textbf{Weak convergence},\\
+\begin{itemize}
+\item \begin{itemize}
+    \item Dual space of $L^2(0,T;H_0^1(\Omega))$ = $L^2(0,T;H^{-1}(\Omega))$.\\
+    \item
+
+\item Action of $f \in L^2(0,T;H^{-1}(\Omega))$ on $u  \in L^2(0,T;H_0^1(\Omega))$;
+\begin{equation*}
+    <<f,u>> = \int_0^T <f,u> dt
+\end{equation*},
+where $<<.,.>>$ is the duality pairing between $L^2(0,T;H^{-1})$ and $L^2(0,T;H_0^1)$ and $<.,.>$ is the duality pairing between $H^{-1}$ and $H_0^1$.
+\end{itemize}
+
+\item  $u_N \xrightarrow[]{} u \quad \text{in} \quad  L^2(0,T;H_0^1(\Omega)) \Rightarrow$\\
+\begin{equation*}
+\int_0^T<f(t),u_N(t)>dt \xrightarrow[]{}  \int_0^T<f(t),u(t)>dt \quad \forall  f \in L^2(0,T;H^{-1}(\Omega))
+\end{equation*}
+
+\item  $f_N \xrightarrow[]{} f$ in $ L^2(0,T;H^{-1}(\Omega)) \Rightarrow$\\
+\begin{equation*}
+      \int_0^T<f_{N}(t),u(t)>dt \xrightarrow[]{}  \int_0^T<f(t),u(t)>dt \quad \forall u \in L^2(0,T;H_0^1(\Omega))
+\end{equation*}
+\item  $u_N \xrightarrow[]{} u$ in $L^2(0,T;H_0^1(\Omega))$ and $f_N \xrightarrow[]{} f$ strongly in $ L^2(0,T;H^{-1}(\Omega))$, or conversely, then $<f_N,u_N> \xrightarrow[]{} <f,u>$.
+\end{itemize}
+\textbf{Proposition (3)}. A subsequence of approximate solutions converges weakly in \\$L^2(0,T;H^{-1}(\Omega))$ to a weak solution:
+\[
+    u \in C([0,T];L^2(\Omega)) \cap L^2(0,T;H_0^1(\Omega))
+\]
+of 6.8 with $u_t \in  L^2(0,T;H^{-1}(\Omega))$. Further, there is a constant $C$ s.t.
+\[
+    ||u||_{L^\infty(0,T;L^2)}+ ||u||_{L^2(0,T;H_0^1)}+
+    ||u_t||_{L^2(0,T;H^{-1})}
+    \leq  C \left( ||f||_{L^2(0,T;H^{-1})} + ||g||_{L^2} \right)
+\]
+
+Proof: Proof for this proposition can be found on proposition(6.7) page 186 of (ch6.pdf) of \cite{lecture2} or chapter 3 of \cite{ahmed}.It has been said it follows from Banach Alaoglu-Theorem (see Theorem(1.19) of \cite{ahmed}).
+
+
+
+
+
+
+
+\textbf{Note: It has been said Existence of weak solution can be proved using Lax-Milgram theorem(page 28 of \cite{lmu} )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Uniqueness of weak solutions}\\
+We assume same data f,g , if $u_{1}, u_{2}$ are two solutions. then linearity gives $u=u_{1}-u_{2}$ is a solution with zero data $f=0$, $g=0$. Showing the only weak solution with zero data is $u=0$ suffice to prove uniqueness argument.\\
+$u(t)\in H_{0}^{1}(\Omega)$, \\
+We  take $v=(t)$ as a test function in (15) with $f=0$,\\
+\[
+\angle u_{t},u \rangle + a\langle u,u;t \rangle =0
+\]
+
+it holds pointwise a.e. in [0,T] in the sense of weak derivatives. We use ((6.46)(see page 208 of ch6A.pdf of \cite{lecture2}) ) and the coercivity
+
+
+
+
+
+
+estimate (13) and find that there are constants $\beta > 0$ and $-\infty < \gamma < \infty$ s.t:
+\[
+\frac{1}{2}\frac{d}{dt}\|u\|_{L^{2}}^{2} + \beta \|u\|_{H_{0}^{1}}^{2} \leq \gamma \|u\|_{L^{2}}^{2}
+\]
+\[
+\frac{1}{2}\frac{d}{dt}\|u\|_{L^{2}}^{2} + \leq \gamma \|u\|_{L^{2}}^{2}, \qquad u(0)=0
+\]
+and since $\|u(0)\|_{L^{2}}=0$, \textbf{Gronwall's inequality} implies that $ \|u(t)\|_{L^{2}}=0$
+for all $t \geq 0 $, so $u=0$. Similarly, we get continuous dependence of weak solutions on the data. It $u_{i}$ is the weak solutions with data $f_{i}, g_{i}$ for $i=1,2$, then there is a constant C independent of the data s.t; \[\|u_{1}-u_{2}\|_{L^{\infty}}(0,T;L^{2})+\|u_{1}-u_{2}\|_{L^{2}}(0,T;H_{0}^{1})\leq C(\|f_{1}-f_{2}\|_{L^{2}}(0,T;H^{-1}))+ \|g_{1}-g_{2}\|_{L^{2}}\]\\
+(From wikipedia defination and  \cite{gron})(Gronwall's inequality\Lemma in differential form)
+It bounds a function (which satisfy a certain differentialor integral inequality) by a solution of corresponding differential or integral equation.
+Let I denote an interval of the real line of the form $[a,\infty)$ or $[a,b]$ or $[a,b)$ with $a<b$. Let $\beta$ and u be real-valued continuous functions defined on I. If u is differentiable in the interior   $I^{o}$ of I (the interval I without the end points a and possibly b) and satisfies the differential inequality.\\
+\[
+u^{,}\leq \beta(t)u(t), \quad t\in I^{o},
+\]
+then u is bounded by the solution of the corresponding differential equation $v^{,}(t)=\beta(t)v(t)$:\\
+\[
+u(t) \leq u(a)exp\Big( \int_{\alpha}^{t}\beta(s)\,ds\Big)
+\]
+for all $t \in I$
+Remark: There is no assumption on the signs of the functions $\beta$ and u
+
+
+\textbf{Theorem(2)Coercivity(Bilinear Form)}:\\
+\[
+a:H_{0}^{1}(\Omega) \times H_{0}^{1} \times (0,T) \rightarrow \mathbb{R}
+\]
+then, $\exists$ constants $C>0$ and $\gamma \in \mathbb{R} $s.t. for every u,v $\in H_{0}^{1}$} \\
+\[
+C\|u\|_{H_{0}^{1}}^{2} \leq a(u,u;t)+\gamma \|u\|_{L^{2}}^{2}
+\]\\
+\[
+|a(u,v;t)|\leq C\|u\|_{H_{0}^{1}}\|v\|_{H_{0}^{1}}
+\]
+
+
+
+
+
+
+
+
+
+
+\section{Regularity}
+Based on section (6.3) , section (7.1.3) from \cite{evans} and a thesis by \cite{ahmed}, we talk about the regularity.
+Our final aim is to prove our weak solution 'u' to the initial-boundary value problem is smooth, provided coefficients of partial differential equations, boundary are smooth.
+
+Consider, initial value problem,
+\begin{equation}
+    u_t - \triangle u &= f \text{ in } R^n \times(0,T] \\
+    u &= g \text{ on } R^n \times {t=0},
+\end{equation}
+
+
+For heuristic purposes, we assume 'u' is smooth and 'u' goes to zero as  $|x| \xrightarrow[]{} \quad and \quad we \quad compute \quad following \quad for \infty$  $0 \leq t \leq T$,
+\begin{equation}
+    \int_{R^n}f^2 dx &=  \int_{R^n} (u_t - \triangle u)^2 dx \\
+    &= \int_{R^n} u_t ^2 - 2  \triangle u u_t + (\triangle u)^2 dx \\
+    &= \int_{R^n}   u_t ^2 + 2 Du. Du_t + (\triangle u)^2 dx
+\end{equation}
+
+
+ $\Rightarrow 2 Du. Du_t = \frac{d}{dt}(|Du|^2)$
+\[
+    \int_0^t \int_{R^n} 2 Du. Du_t dx ds =  \int_{R^n} |Du^2|dx|_{s=0}^{s=t}
+\]
+
+
+As we can see from (6.3) of \cite{evans};
+\begin{equation*}
+    \int_{R^n} (\triangle u)^2 dx =  \int_{R^n} |Du^2| ^2dx
+\end{equation*}
+Using two equalities above equation and integrating  in time;
+
+\begin{align*}
+    \text{sup}_{0\leq t \leq T} int_{R^n} |Du| ^2dx &+ \int_0^t \int_{R^n} u_t^2 + |D^2u|^2 dx dt \\
+    &\leq C\left( \int_0^t \int_{R^n} f^2 dx dt + \int_{R^n} |Dg|^2dx \right)
+\end{align*}
+
+We see, using $L^{2}$-norm of 'f', we can estimate $L^{2}$-norm of second derivative. $L^{2}$-norm of 'f' on $\mathbb{R}^{n}\times(0,T)$ and $L^{2}$-norm of $D_{g}$ on $\mathbb{R}^{n}$ estimates, $L^{2}$-norm of $u_{t}$ and $D^{2}u$ within $\mathbb{R}^{n}\times(0,T)$.
+
+
+We now differentiate the partial differential equations(initial value condition) above w.r.t $t$, set $ \Tilde{u} := u_t$.
+\begin{align*}
+    \Tilde{u}_t  - \triangle \Tilde{u} &= \Tilde{f} \text{ in } R^n \times (0,T] \\
+    \Tilde{u} &= \Tilde{g}  \text{ on } R^n \times {t=0}
+\end{align*}
+
+
+
+
+for $\Tilde{f} := f_t, \Tilde{g}:= u_t(.,0) = f(.,0) + \triangle g$.\\
+We multiply by $\Tilde{u}$, integrate by parts and use Gronwall's inequality;
+\begin{equation}
+   \text{sup}_{0\leq t \leq T} \int_{R^n} |u_t|^2 dx &+ \int_0^T \int_{R^n}  |Du_t|^2 dx dt \\
+   &\leq C \left( \int_0^t \int_{R^n} f^2 dx dt + \int_{R^n} |Dg|^2 + f(.,0)^2 dx \right)
+\end{equation}
+From Theorem 2(iii) of (5.9.2) from \cite{evans}, we have,
+\begin{equation*}
+    \text{max}_{0 \leq t \leq T} ||f(.,t)||_{L^2(R^n)} \leq C(||f||_{L^2(R^n \times (0,T))} + ||f_t||_ {L^2(R^n \times (0,T))})
+\end{equation*}
+ We write $-\triangle u = f-u$ and according to (6.3) of \cite{evans},we get,
+\begin{equation*}
+   \int_{R^n} |D^2u|^2 dx \leq C  \int_{R^n} f^2 + u_t^2 dx
+\end{equation*}
+
+We combine above equations, we get,
+\begin{align*}
+    \text{sup}_{0\leq t \leq T} \int_{R^n} |u_t|^2 + |D^2u|^2 dx &+ \int_0^T \int_{R^n} |Du_t|^2 dx dt \\
+  &  \leq C\left( \int_0^T \int_{R^n} f_t^2 + f^2 dx dt+   \int_{R^n} |D^2g|^2 dx \right)
+\end{align*}
+for constant $C$.
+
+We can apply same method, use first derivatives of f to estimate $L_{2}$-norm of the third derivatives.Further, we can estimate $L^{2}$-norm of $(m+2)^{nd}$ derivatives by $L^{2}$-norm of $m^{th}$ derivatives of f, for $m=0,1,...$. For, $m=\infty$ where u belongs to $H^{m}$ for all $m=1,...$ and hence to $C^{\infty}$. Above wasn't real proof but we assumed u smooth for calculation. We have presented below some calculations which are technically difficult but very powerful. These calculations comes from ellipticity. We derive analytical estimates from structural algebraic assumption.Coupling this procedure (and Galerkin method) with Sobolev embedding theorem, we can construct weak solutions are smooth,classical solutions provided data follows compatible relation. We present those higher estimates below:\\
+\textbf{Proof of Regularity for our boundary condition can be found in Theorem(3.4) of \cite{ahmed} or page 39 section(2.6) of \cite{lmu} }
+
+
+(Theorem 5 of (7.1.3) of \cite{evans})(Imrpoved regularity),
+(i) Assume
+\begin{equation*}
+    g \in H_0^1(U), f \in L^2(0,T;L^2(U))
+\end{equation*}
+Also assume $u \in L^2(0, T,  H_0^1(U))$, with $u' \in L^2(0,T;H^{-1}(U)) $ is the weak solution of:
+
+\begin{align*}
+    u_t + Lu &= f \text{ in } U_T \\
+    u &= 0 \text{ on } \partial U \times [0,T] \\
+    u &= g \text{ on } U \times {t=0}
+\end{align*}
+Then,
+\begin{equation*}
+u \in L^2(0,t;H^2(U)) \cap L^\infty(0,T;H_0^1(U)), u' \in L^2(0,T;L^2(U)),
+\end{equation*}
+and we have the estimate
+\begin{align*}
+    \text{ess sup }_{0\leq t \leq T} ||u(t)||_{H_0^1(U)} & +  ||u||_{L^2(0,T;H^2(U))} + ||u'||_{L^2(0,T;L^2(U))} \\
+    &\leq C\left( ||f||_{L^2(0,T;H^2(U))} + ||g||_{H_0^1(U)}   \right)
+\end{align*}
+the constant $C$ depending only on $U, T$ and the coefficients of $L$.
+(ii) If, in addition,
+\begin{equation*}
+    g \in H^2(U), f' \in L^2(0,T;H^2(U))
+\end{equation*}
+then
+\begin{equation*}
+    u \in L^\infty(0,T;H^2(U)), u' \in L^\infty(0,T;L^2(U)) \cap L^2(0,T;H^1_0(U)), u'' \in L^2(0,T;H^{-1}(U))
+\end{equation*}
+with the estimate
+\begin{align*}
+ \text{ess sup }_{0\leq t \leq T}(
+ ||u(t)||_{H^2(U)}+ ||u'(t)||_{L^2(U)} &+ ||u'||_{ L^2(0,T;H^1_0(U))} \\
+ &+ ||u''||_{L^2(0,T;H^{-1}(U))} \leq C(||f||_{H^1(0,T, L^2(U))} +  ||g||_{H^2(U)})
+ )  
+\end{align*}
+
+(Theorem 6 of (7.1.3) of \cite{evans}) (Higher regularity)
+Assume
+\begin{equation*}
+    g \in H^{2m + 1 }(U), \frac{d^kf}{dt^k} \in L^2(0,T;H^{2m-2k}(U)) (k = 0,....,m)
+\end{equation*}
+Suppose the following $m^{th}$ -order compatibility conditions hold:
+\begin{align*}
+    &g_0 := g \in H_0^1(U), g_1 := f(0)- Lg_0 \in H_0^1(U), \\
+    &...., g_m := \frac{d^{m-1}f}{dt^{m-1}}(0) - Lg_{m-1} \in H_0^1(U),
+\end{align*}
+Then,
+\begin{equation*}
+    \frac{d^k u}{dt^k} \in L^2(0,T;H^{2m + 2 -2k}(U)) (k = 0,....,m+1);
+\end{equation*}
+and we have,
+\begin{align*}
+    \sum_{k= 0}^{m+1}\left|\left| \frac{d^k u}{dt^k}  \right| \right|_{L^2(0,T;H^{2m + 2 -2k}(U))} \\
+    \leq C\left( \sum_{k= 0}^{m}\left|\left| \frac{d^k f}{dt^k}  \right| \right|_{L^2(0,T;H^{2m + 2 -2k}(U))}   + ||g||_{H^{2m+1}(U)}\right)
+\end{align*}
+the constant $C$ depending only on $m, U, T$ and the coefficients of $L$.
+
+
+(Theorem 7 of (7.1.3) of \cite{evans})(Infinite differentiability). Assume
+\begin{equation*}
+    g \in C^\infty(\Tilde{U}), f \in C^\infty(\Tilde{U_T})
+\end{equation*}
+and the $m^{th}$ order compatibility conditions hold for m = 0,1,...  Then the parabolic\\
+initial/boundary-value problem (IBVP of Galerkin approximation's above) has a unique solution:
+\begin{equation}
+    u \in C^\infty(\Tilde{U_T})
+
+
+\section{Sobolev Embedding} (We find the following shortic defination based on \cite{sobolev})\\
+\textbf{(Gagliardo-Nirenberg-Sobolev inequality)(GNS)}: Assume
+$1\leq p < n$. $\exists$ a constant C, depending only on p and n, such that\\
+\[ \|u\|_{L^{p*}}(\mathbb{R}^{n}) \leq C\|Du\|_{L^{p}(\mathbb{R}^{N})} \]\\
+$\forall  u\in C_{c}^{1}(\mathbb{R}^{n})$. Sobolev embedding theorem \\follows directly from GNS.
+\textbf{we note GNS is very useful tool for analysis in Sobolev space}
+\\
+
+(Sobolev embedding ): Let $1 \leq p \leq \infty, k \in \mathbb{Z}_{+}$ and $\mathbb{Q}$ \\be a boundary Lipschitz domain in $\mathbb{R}^{n}$.
+\begin{itemize}
+    \item Case 1: $kp > n$\\ \[ W^{k,p}(\Omega) \hookrightarrow C(\Omega) \]\\
+    \item Case 2: $kp=1$ \[ W^{k,p}(\Omega) \hookrightarrow L(\Omega), \quad \forall q \in [1,\infty)              \]\\
+    \[\text{Also,} \quad W^{n,1} \hookrightarrow C(\tilde{\Omega})  \]\\
+    \item Case 3: $kp < n$\\
+    \[  W^{k,p}(\Omega)\hookrightarrow L^{q}(\Omega), \qquad \text{with} \quad \frac{1}{q}=\frac{1}{p}-\frac{k}{p} \]
+\end{itemize}\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{equation}
+
+
+\printbibliography % Be sure to remove access date and months from the .bib file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Appendix}
+\subsection{Calculation for Chapter 3 Maximum Principle of this thesis : Applying Divergence Theorem }
+
+Let $I\subset \mathbb{R}^{n}$ be an open bounded with $\partial I $ being $C^{1}$. Suppose $w \in C^{1}\bar{(I)}$. Then,Divergence Theorem:\\
+\begin{equation}
+    \int_{I} \nabla w \,dx = \int_{\partial I} w. k^{i} \,ds \quad (i=1,...,n)
+\end{equation}
+where $k^{i}=n$ denotes outward pointing unit vector field to the region $I$.\\
+Let, $w=(u-m) \times v$. \\
+\[
+\text{LHS}=
+\int_{I} \nabla w \,dx  =   \int_{I} \nabla (u-m)v \,dx
+\]\\
+Using product rule of integration(Integration by parts)
+\[
+\int_{I}\nabla(u-m)v\,dx = \int_{I}\nabla{(u-m)v} - \int_{I}(u-m)\nabla v\,dx
+\]\\
+Now we use the divergence theorem from above:
+\[
+\int_{I}\nabla(u-m)v\,dx = \int_{\partial I}(u-m)v.n\,ds - \int_{I}(u-m)\nabla .v\,dx
+\]
+Let, $v=\nabla (u-m)$  
+\[
+\int_{I}\nabla(u-m) \nabla(u-m) = \int_{\partial I}(u-m) \nabla  (u-m).n \,ds-\int_{I}(u-m)\nabla .\nabla(u-m)\dx
+\]
+we know, $\nabla.\nabla=\Delta$
+\begin{equation}
+\int_{I}\Delta(u-m)=\int_{\partial I}\nabla(u-m)(u-m).n\,ds - \int_{I}|\nabla(u-m)|^{2}\,dx
+\end{equation}
+
+Or We can directly use Green's first identity(which is also given in ( see equation(21.7) of  \cite{green} )
+
+
+
+
+
+
+
